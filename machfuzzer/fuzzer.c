@@ -66,10 +66,6 @@ int main(int argc, char* argv[]) {
 
     int method = rand() % (sizeof(ii)/sizeof(int));
 
-    if (method == 5) continue;
-    //if (method == 7) continue;
-    //if (method == 1) continue;
-
     for (i = 0; i < ii[method]; i++) in[i] = rand() % 0xF;
     for (i = 0; i < iic[method]; i++) inc[i] = (rand() << 16) + rand();
 
@@ -77,7 +73,6 @@ int main(int argc, char* argv[]) {
 
     out_size = oo[method];
     outc_size = ooc[method];
-    //kernResult = IOConnectCallStructMethod(connect, method, in, ii[method], out, &out_size);
     kernResult = IOConnectCallMethod(connect, method, inc, iic[method], in, ii[method], outc, &outc_size, out, &out_size);
     if (kernResult != KERN_SUCCESS) printf("IOConnectCallMethod failed %X\n", kernResult);
     
